@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .notif-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .notif-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .notif-item.unread::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+        }
+
+        .notif-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--secondary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo">InternMatrix</a>
+        <div class="nav-links">
+            <a href="student-dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="notif-container">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+            <h2 style="font-family: 'Outfit'; font-size: 28px;">Notifications</h2>
+            <button class="btn btn-outline" style="border:none; color: var(--primary-blue); font-size: 14px;">Mark all
+                as read</button>
+        </header>
+
+        <div class="notif-list">
+            <div class="card notif-item unread">
+                <div class="notif-icon">🎉</div>
+                <div>
+                    <h4 style="font-size: 16px; margin-bottom: 4px;">Application Accepted!</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Your application for Microsoft UI/UX
+                        Intern has been accepted. Check your email for next steps.</p>
+                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">2 hours ago</span>
+                </div>
+            </div>
+
+            <div class="card notif-item unread">
+                <div class="notif-icon">🏛️</div>
+                <div>
+                    <h4 style="font-size: 16px; margin-bottom: 4px;">New Government Opportunity</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Ministry of IT just posted a new
+                        Cybersecurity internship. Apply before it closes!</p>
+                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">5 hours ago</span>
+                </div>
+            </div>
+
+            <div class="card notif-item">
+                <div class="notif-icon">👤</div>
+                <div>
+                    <h4 style="font-size: 16px; margin-bottom: 4px;">Profile Viewed</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Recruiters from Google India have viewed
+                        your profile details.</p>
+                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">Yesterday</span>
+                </div>
+            </div>
+
+            <div class="card notif-item">
+                <div class="notif-icon">📄</div>
+                <div>
+                    <h4 style="font-size: 16px; margin-bottom: 4px;">Resume Score Updated</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Based on your latest changes, your AI
+                        resume score has increased to 84.</p>
+                    <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">1 day ago</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

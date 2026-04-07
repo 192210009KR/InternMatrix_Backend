@@ -1,1 +1,8 @@
-internmatrix (1).sql
+# Ignore Python cache
+__pycache__/
+
+# Ignore uploads folder (optional)
+uploads/
+
+# Ignore logs
+*.log
