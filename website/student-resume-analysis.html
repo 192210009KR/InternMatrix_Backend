@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .analysis-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .score-card {
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--secondary-blue) 100%);
+            margin-bottom: 40px;
+        }
+
+        .score-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 8px solid var(--primary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .score-value {
+            font-size: 48px;
+            font-weight: 900;
+            font-family: 'Outfit';
+            color: var(--primary-blue);
+        }
+
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .feedback-item {
+            padding: 24px;
+            background: white;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .feedback-item.success {
+            border-left-color: var(--success);
+        }
+
+        .feedback-item.warning {
+            border-left-color: #FBC02D;
+        }
+
+        .feedback-item.error {
+            border-left-color: var(--error);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="student-dashboard.html" class="logo">InternMatrix</a>
+        <div class="nav-links">
+            <a href="student-dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+            <a href="student-profile.html" id="profile-btn" style="width: 44px; height: 44px; border-radius: 50%; background: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; text-decoration: none; overflow: hidden; font-size: 16px; font-family: 'Outfit', sans-serif;">
+                <span id="profile-initials">U</span>
+                <img id="profile-image" src="" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+            </a>
+        </div>
+    </nav>
+
+    <main class="analysis-container">
+        <header style="margin-bottom: 32px;">
+            <h1 style="font-family: 'Outfit'; font-size: 32px;">Resume Performance</h1>
+            <p style="color: var(--text-secondary);">AI-powered analysis based on industry standards.</p>
+        </header>
+
+        <section class="card score-card fade-in">
+            <div class="score-circle">
+                <span class="score-value">84</span>
+                <span style="font-weight: 700; font-size: 14px; opacity: 0.6;">OUT OF 100</span>
+            </div>
+            <h3 style="font-family: 'Outfit'; margin-bottom: 12px;">Great Profile, John!</h3>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">Your resume ranks in the top 15%
+                of applicants for Software Engineering roles. Focus on quantifiable achievements to reach 90+.</p>
+        </section>
+
+        <div class="feedback-grid">
+            <div class="card feedback-item success">
+                <h4 style="margin-bottom: 8px;">✅ Strong Technical Skills</h4>
+                <p style="font-size: 14px; color: var(--text-secondary);">Your experience with React, Python, and AWS is
+                    well-highlighted and highly sought after.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 95%;"></div>
+                </div>
+            </div>
+            <div class="card feedback-item error">
+                <h4 style="margin-bottom: 8px;">❌ Bullet Point Length</h4>
+                <p style="font-size: 14px; color: var(--text-secondary);">Some of your project descriptions are too
+                    long. Aim for concise, impact-driven sentences.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%; background: var(--error);"></div>
+                </div>
+            </div>
+            <div class="card feedback-item warning">
+                <h4 style="margin-bottom: 8px;">⚠️ Missing Keywords</h4>
+                <p style="font-size: 14px; color: var(--text-secondary);">Consider adding terms like "Unit Testing" or
+                    "Ci/CD" to better match senior intern roles.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%; background: #FBC02D;"></div>
+                </div>
+            </div>
+            <div class="card feedback-item success">
+                <h4 style="margin-bottom: 8px;">✅ Quantified Impact</h4>
+                <p style="font-size: 14px; color: var(--text-secondary);">Good use of numbers (e.g., "30% improvement")
+                    in your internship section.</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 88%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <section class="card" style="margin-top: 40px; padding: 32px;">
+            <h3 style="font-family: 'Outfit'; margin-bottom: 24px;">Upload & Analyze</h3>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <p style="font-size: 15px; color: var(--text-secondary);">Select your resume (PDF or DOCX) to get a detailed AI analysis.</p>
+                <input type="file" id="resumeFile" accept=".pdf,.docx" style="margin-top: 8px;">
+            </div>
+            <button id="analyzeBtn" class="btn btn-primary" style="margin-top: 32px; width: 100%; justify-content: center;">Analyze Resume</button>
+            <p id="statusMsg" style="margin-top: 16px; text-align: center; font-size: 14px; font-weight: 600; display: none;"></p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             const user = JSON.parse(localStorage.getItem('user'));
+             
+             // Update Header Profile Picture
+             const initials = document.getElementById('profile-initials');
+             const img = document.getElementById('profile-image');
+
+             if (user && user.profile_pic) {
+                 img.src = user.profile_pic;
+                 img.style.display = 'block';
+                 initials.style.display = 'none';
+             } else if (user && user.full_name) {
+                 initials.innerText = user.full_name[0].toUpperCase();
+             }
+        });
+
+        // Configuration: Change this to your server IP if not accessing via http
+        const BACKEND_URL = window.location.protocol === 'file:' ? 'http://10.225.202.159:5000' : '';
+
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const resumeFileInput = document.getElementById('resumeFile');
+        const statusMsg = document.getElementById('statusMsg');
+
+        analyzeBtn.addEventListener('click', async () => {
+            const file = resumeFileInput.files[0];
+            if (!file) {
+                alert('Please select a file first.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            analyzeBtn.disabled = true;
+            statusMsg.style.display = 'block';
+            statusMsg.style.color = 'var(--primary-blue)';
+            statusMsg.innerText = 'Analyzing your resume... this may take 20-30 seconds.';
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/analyze_resume`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    statusMsg.style.color = 'var(--success)';
+                    statusMsg.innerText = 'Analysis complete!';
+                    updateUI(data.analysis); 
+                } else {
+                    statusMsg.style.color = 'var(--error)';
+                    statusMsg.innerText = 'Analysis failed: ' + (data.error || 'Unknown error');
+                }
+            } catch (err) {
+                console.error(err);
+                statusMsg.style.color = 'var(--error)';
+                statusMsg.innerText = 'An error occurred during analysis.';
+            } finally {
+                analyzeBtn.disabled = false;
+            }
+        });
+
+        function updateUI(aiText) {
+            try {
+                // The AI returns a JSON string, but sometimes it wraps it in markdown blocks
+                let cleanJson = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+                const analysis = JSON.parse(cleanJson);
+
+                // Update Score
+                document.querySelector('.score-value').innerText = analysis.score;
+                document.querySelector('.score-card h3').innerText = `Your Profile Score: ${analysis.score}/100`;
+                document.querySelector('.score-card p').innerText = analysis.summary;
+
+                // Update Feedback Grid
+                const grid = document.querySelector('.feedback-grid');
+                grid.innerHTML = '';
+
+                // Add Strengths
+                analysis.strengths.forEach(s => {
+                    grid.innerHTML += `
+                        <div class="card feedback-item success">
+                            <h4 style="margin-bottom: 8px;">✅ Strength</h4>
+                            <p style="font-size: 14px; color: var(--text-secondary);">${s}</p>
+                        </div>
+                    `;
+                });
+
+                // Add Weaknesses
+                analysis.weaknesses.forEach(w => {
+                    grid.innerHTML += `
+                        <div class="card feedback-item error">
+                            <h4 style="margin-bottom: 8px;">❌ Area for Growth</h4>
+                            <p style="font-size: 14px; color: var(--text-secondary);">${w}</p>
+                        </div>
+                    `;
+                });
+
+                // Update Suggestions Section
+                const suggestionBox = document.querySelector('section:last-of-type div');
+                suggestionBox.innerHTML = '';
+                analysis.suggestions.forEach(suggest => {
+                    suggestionBox.innerHTML += `
+                        <div class="flex-center" style="justify-content: flex-start; gap: 16px;">
+                            <span style="font-size: 24px;">💡</span>
+                            <p style="font-size: 15px;">${suggest}</p>
+                        </div>
+                    `;
+                });
+
+                // Scroll to results
+                document.querySelector('.score-card').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (err) {
+                console.error('Failed to parse AI JSON:', err);
+                statusMsg.style.color = 'var(--error)';
+                statusMsg.innerText = 'Analysis received, but there was a problem displaying the results. Please try again.';
+            }
+        }
+    </script>
+</body>
+
+</html>

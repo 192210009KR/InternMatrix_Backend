@@ -1,0 +1,17 @@
+__pycache__/
+        app.py
+        config.py
+        rag_utils.py
+        seed_internships.py
+        test_analysis.py
+        test_analysis_v2.py
+        test_both.py
+        test_extraction.py
+        test_fixes.py
+        test_gov_search.py
+        test_keys_diagnostic.py
+        test_ncs.py
+        test_recommendations.py
+        test_v1_api.py
+        uploads/
+        website/

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .auth-card {
+            max-width: 480px;
+            width: 100%;
+            padding: 48px;
+            animation: fadeIn 0.8s ease;
+            border-top: 4px solid var(--accent-blue);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-color);
+            background: rgba(248, 250, 255, 0.5);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(41, 98, 255, 0.1);
+        }
+
+        .auth-header {
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .auth-header h2 {
+            font-size: 28px;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 8px;
+            color: var(--accent-blue);
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo" style="color: var(--accent-blue);">InternMatrix <span
+                style="font-weight: 400; font-size: 14px; margin-left:8px; opacity: 0.7;">Admin</span></a>
+        <div class="nav-links">
+            <a href="index.html" class="btn btn-outline" style="font-size: 14px;">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="auth-container">
+        <section class="card auth-card">
+            <div class="auth-header">
+                <h2>Admin Login</h2>
+                <p>Authorized personnel only. Access our recruitment portal.</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Admin ID/Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="admin@simats.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Security Code</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center; height: 56px; font-size: 16px;">
+                    Secure Enter
+                </button>
+            </form>
+
+            <div style="margin-top: 32px; text-align: center;">
+                <a href="student-login.html"
+                    style="font-size: 15px; color: var(--text-secondary); text-decoration: none; font-weight: 600;">&larr; Return to
+                    Student Portal</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const toggle = document.querySelector('.toggle-password');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                toggle.innerText = '🔒';
+            } else {
+                pwd.type = 'password';
+                toggle.innerText = '👁️';
+            }
+        }
+
+        // Configuration: Change this to your server IP if not accessing via http
+        const BACKEND_URL = window.location.protocol === 'file:' ? 'http://10.225.202.159:5000' : '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.protocol === 'file:') {
+                console.warn('Backend access: Falling back to hardcoded IP for file:// access');
+                const warning = document.createElement('div');
+                warning.style.cssText = 'background: #FFF9C4; color: #F57F17; padding: 12px; border-radius: 8px; margin-bottom: 24px; font-size: 13px; font-weight: 600; text-align: center; border: 1.5px solid #FBC02D;';
+                warning.innerHTML = '⚠️ Accessing via file system. Please use <b>http://10.225.202.159:5000/</b> for secure access.';
+                document.querySelector('.auth-header').after(warning);
+            }
+        });
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            try {
+                btn.innerText = 'Authorizing...';
+                btn.disabled = true;
+
+                const response = await fetch(`${BACKEND_URL}/admin_login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store admin data in localStorage
+                    localStorage.setItem('admin', JSON.stringify(data.admin));
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    alert(data.error || 'Invalid credentials');
+                }
+            } catch (err) {
+                console.error(err);
+                if (window.location.protocol === 'file:') {
+                    alert('Security Error: Cannot authorize from a local file. Please open the portal via http://10.225.202.159:5000/admin-login.html');
+                } else {
+                    alert('Connection error. Secure access failed.');
+                }
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

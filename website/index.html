@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternMatrix - Your Gateway to Professional Growth</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(0, 149, 217, 0.08), transparent 45%),
+                        radial-gradient(circle at bottom left, rgba(0, 149, 217, 0.08), transparent 45%);
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-blue) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 56px;
+            line-height: 1.6;
+        }
+
+        .portal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+            margin-top: 64px;
+        }
+
+        .portal-card {
+            padding: 48px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            border: 1px solid rgba(0, 149, 217, 0.1);
+        }
+
+        .portal-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--secondary-blue);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary-blue);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 120px;
+            padding-bottom: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 40px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">InternMatrix</a>
+        <div class="nav-links">
+            <a href="student-login.html" class="btn btn-outline" style="margin-right: 12px;">Login</a>
+            <a href="student-signup.html" class="btn btn-primary">Join Now</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero fade-in">
+            <h1>Unlock Your Future <br> with InternMatrix</h1>
+            <p>Connect with top-tier internships, leverage AI-powered resume analysis, and launch your career with confidence.</p>
+            
+            <div class="portal-options">
+                <div class="card portal-card">
+                    <div class="portal-icon">🎓</div>
+                    <h3>Student Portal</h3>
+                    <p>Find internships, track applications, and get AI career guidance.</p>
+                    <a href="student-login.html" class="btn btn-primary">Enter Student Portal</a>
+                </div>
+
+                <div class="card portal-card">
+                    <div class="portal-icon">🏢</div>
+                    <h3>Admin Portal</h3>
+                    <p>Post internships, manage applicants, and streamline hiring.</p>
+                    <a href="admin-login.html" class="btn btn-outline">Enter Admin Portal</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-grid">
+            <div class="card">
+                <h4>AI Resume Scoring</h4>
+                <p style="color: var(--text-secondary); margin-top: 12px; font-size: 14px;">Instant feedback on your resume with industry-standard analysis.</p>
+            </div>
+            <div class="card">
+                <h4>Government Ops</h4>
+                <p style="color: var(--text-secondary); margin-top: 12px; font-size: 14px;">Direct access to official government internship programs and NCS portal.</p>
+            </div>
+            <div class="card">
+                <h4>Easy Tracking</h4>
+                <p style="color: var(--text-secondary); margin-top: 12px; font-size: 14px;">Manage all your applications and saved opportunities in one place.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 14px;">
+        &copy; 2026 InternMatrix. All rights reserved.
+    </footer>
+</body>
+</html>

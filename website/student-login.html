@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: calc(100vh - 80px);
+            /* Height minus navbar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .auth-card {
+            max-width: 480px;
+            width: 100%;
+            padding: 48px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-color);
+            background: rgba(248, 250, 255, 0.5);
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 90, 193, 0.1);
+        }
+
+        .auth-header {
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .auth-header h2 {
+            font-size: 28px;
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="logo">InternMatrix</a>
+        <div class="nav-links">
+            <a href="index.html" class="btn btn-outline" style="font-size: 14px;">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="auth-container">
+        <section class="card auth-card">
+            <div class="auth-header">
+                <h2>Welcome Student!</h2>
+                <p>Log in to access your dashboard and internships.</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Student Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="example@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <a href="forgot-password.html"
+                        style="font-size: 13px; color: var(--primary-blue); font-weight: 700; text-decoration: none;">Forgot
+                        Password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="width: 100%; justify-content: center; height: 56px; font-size: 16px;">
+                    Continue
+                </button>
+            </form>
+
+            <div style="margin-top: 32px; text-align: center; font-size: 15px; color: var(--text-secondary);">
+                Don't have an account?
+                <a href="student-signup.html"
+                    style="color: var(--primary-blue); font-weight: 700; text-decoration: none;">Sign Up</a>
+            </div>
+
+            <div style="margin-top: 24px; text-align: center;">
+                <a href="admin-login.html"
+                    style="font-size: 13px; color: var(--text-secondary); text-decoration: none; border-bottom: 1px dotted var(--text-secondary);">Looking for staff access? Click here</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const toggle = document.querySelector('.toggle-password');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                toggle.innerText = '🔒';
+            } else {
+                pwd.type = 'password';
+                toggle.innerText = '👁️';
+            }
+        }
+
+        // Configuration: Change this to your server IP if not accessing via http
+        const BACKEND_URL = window.location.protocol === 'file:' ? 'http://10.225.202.159:5000' : '';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.protocol === 'file:') {
+                console.warn('Backend access: Falling back to hardcoded IP for file:// access');
+                const warning = document.createElement('div');
+                warning.style.cssText = 'background: #FFF9C4; color: #F57F17; padding: 12px; border-radius: 8px; margin-bottom: 24px; font-size: 13px; font-weight: 600; text-align: center; border: 1.5px solid #FBC02D;';
+                warning.innerHTML = '⚠️ Accessing via file system. Please use <b>http://10.225.202.159:5000/</b> for better stability.';
+                document.querySelector('.auth-header').after(warning);
+            }
+        });
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            try {
+                btn.innerText = 'Logging in...';
+                btn.disabled = true;
+
+                const response = await fetch(`${BACKEND_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store user data in localStorage
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = 'student-dashboard.html';
+                } else {
+                    alert(data.error || 'Login failed');
+                }
+            } catch (err) {
+                console.error(err);
+                if (window.location.protocol === 'file:') {
+                    alert('Network Error: Cannot connect to backend from a file:// URL. Please open the website via http://10.225.202.159:5000/ instead.');
+                } else {
+                    alert('An error occurred connecting to the server. Please check your connection.');
+                }
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

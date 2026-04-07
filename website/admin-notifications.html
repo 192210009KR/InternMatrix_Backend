@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Notifications - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            background: #1A1C3E;
+            color: white;
+            padding: 32px 24px;
+            height: 100vh;
+        }
+
+        .content-area {
+            padding: 48px;
+            background: #F8F9FE;
+            max-width: 900px;
+        }
+
+        .notif-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent-blue);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <a href="index.html" class="logo" style="color: white;">InternMatrix</a>
+            <nav class="nav-menu" style="margin-top: 40px; display: flex; flex-direction: column; gap: 12px;">
+                <a href="admin-dashboard.html" class="admin-nav-item">🏠 Dashboard</a>
+                <a href="admin-create-internship.html" class="admin-nav-item">➕ Create Internship</a>
+                <a href="admin-manage-internships.html" class="admin-nav-item">📂 Manage Internships</a>
+                <a href="admin-applications.html" class="admin-nav-item">👥 All Applications</a>
+                <a href="admin-profile.html" class="admin-nav-item">👤 My Profile</a>
+            </nav>
+        </aside>
+
+        <main class="content-area">
+            <header style="margin-bottom: 32px;">
+                <h2 style="font-family: 'Outfit'; font-size: 28px;">Admin Alerts</h2>
+                <p style="color: var(--text-secondary);">Updates on candidate activity and system status.</p>
+            </header>
+
+            <div class="notif-list">
+                <div class="card notif-item">
+                    <div style="font-size: 24px;">📥</div>
+                    <div>
+                        <h4 style="font-size: 16px; margin-bottom: 4px;">New Application Received</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary);">Rahul Sharma applied for Software
+                            Engineer Intern (Match Score: 92%).</p>
+                        <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">10 minutes
+                            ago</span>
+                    </div>
+                </div>
+
+                <div class="card notif-item">
+                    <div style="font-size: 24px;">📊</div>
+                    <div>
+                        <h4 style="font-size: 16px; margin-bottom: 4px;">Weekly Report Ready</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary);">Your recruitment summary for this week
+                            is now available for download.</p>
+                        <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">3 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="card notif-item">
+                    <div style="font-size: 24px;">⚠️</div>
+                    <div>
+                        <h4 style="font-size: 16px; margin-bottom: 4px;">Posting Closing Soon</h4>
+                        <p style="font-size: 14px; color: var(--text-secondary);">Data Analyst Intern posting expires in
+                            24 hours. Consider reviewing final candidates.</p>
+                        <span style="font-size: 12px; opacity: 0.6; display: block; margin-top: 8px;">1 day ago</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

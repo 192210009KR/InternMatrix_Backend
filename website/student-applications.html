@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications - InternMatrix</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .app-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        .content-area {
+            padding: 48px 64px;
+            background: var(--bg-light);
+        }
+
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-applied {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .status-review {
+            background: #FFF3E0;
+            color: #F57C00;
+        }
+
+        .status-hired {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .status-closed {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .application-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 32px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 149, 217, 0.05);
+        }
+
+        .app-logo {
+            width: 56px;
+            height: 56px;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-blue);
+            font-weight: 800;
+        }
+
+        .sidebar {
+            background: var(--white);
+            border-right: 1.5px solid var(--border-color);
+            padding: 40px 24px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover {
+            background: var(--secondary-blue);
+            color: var(--primary-blue);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 149, 217, 0.2);
+        }
+
+        /* Sidebar override to avoid global nav conflict */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        
+        /* Sidebar nav override */
+        .sidebar .sidebar-nav {
+            margin-top: 12px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="student-dashboard.html" class="logo">InternMatrix</a>
+            <div class="sidebar-nav">
+                <a href="student-dashboard.html" class="nav-item"><i>🏠</i> Home</a>
+                <a href="student-chat.html" class="nav-item"><i>🤖</i> AI Chat</a>
+                <a href="student-saved.html" class="nav-item"><i>🔖</i> Saved</a>
+                <a href="student-gov-opps.html" class="nav-item"><i>🏛️</i> Government</a>
+                <a href="student-profile.html" class="nav-item"><i>👤</i> Profile</a>
+                <a href="student-applications.html" class="nav-item active"><i>📝</i> Submissions</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area">
+            <header style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2 style="font-family: 'Outfit'; font-size: 32px;">My Applications</h2>
+                    <p style="color: var(--text-secondary);">Track the status of your apprenticeship journeys.</p>
+                </div>
+                <div class="flex-center" style="gap: 16px;">
+                    <a href="student-profile.html" id="profile-btn" style="width: 52px; height: 52px; border-radius: 50%; background: var(--primary-blue); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; text-decoration: none; overflow: hidden; font-size: 18px; font-family: 'Outfit', sans-serif;">
+                        <span id="profile-initials">U</span>
+                        <img id="profile-image" src="" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                    </a>
+                </div>
+            </header>
+
+            <div class="application-list">
+                <!-- Application 1 -->
+                <div class="card application-card">
+                    <div class="app-company-info">
+                        <div class="app-logo">G</div>
+                        <div>
+                            <h4 style="font-size: 17px;">Software Engineer Intern</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary);">Applied on Oct 12, 2025 • Google
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <span class="status-badge status-review">Under Review</span>
+                        <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View Status</button>
+                    </div>
+                </div>
+
+                <!-- Application 2 -->
+                <div class="card application-card">
+                    <div class="app-company-info">
+                        <div class="app-logo">M</div>
+                        <div>
+                            <h4 style="font-size: 17px;">UI/UX Design Intern</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary);">Applied on Sep 28, 2025 •
+                                Microsoft</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <span class="status-badge status-hired">Hired 🎉</span>
+                        <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">Onboarding</button>
+                    </div>
+                </div>
+
+                <!-- Application 3 -->
+                <div class="card application-card">
+                    <div class="app-company-info">
+                        <div class="app-logo">A</div>
+                        <div>
+                            <h4 style="font-size: 17px;">Frontend Developer Intern</h4>
+                            <p style="font-size: 13px; color: var(--text-secondary);">Applied on Sep 15, 2025 • Adobe
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <span class="status-badge status-closed">Closed</span>
+                        <button class="btn btn-outline"
+                            style="padding: 8px 16px; font-size: 13px; opacity: 0.5;">Archived</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Configuration: Change this to your server IP if not accessing via http
+        const BACKEND_URL = window.location.protocol === 'file:' ? 'http://10.225.202.159:5000' : '';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user) {
+                window.location.href = 'student-login.html';
+                return;
+            }
+
+            // Update Header Profile Picture
+            const initials = document.getElementById('profile-initials');
+            const img = document.getElementById('profile-image');
+
+            if (user && user.profile_pic) {
+                img.src = user.profile_pic;
+                img.style.display = 'block';
+                initials.style.display = 'none';
+            } else if (user && user.full_name) {
+                initials.innerText = user.full_name[0].toUpperCase();
+            }
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/get_user_applications/${user.id}`);
+                const applications = await response.json();
+
+                const container = document.querySelector('.application-list');
+                container.innerHTML = ''; // Clear mocks
+
+                applications.forEach(app => {
+                    const statusClass = getStatusClass(app.status);
+                    const card = document.createElement('div');
+                    card.className = 'card application-card';
+                    card.innerHTML = `
+                        <div class="app-company-info">
+                            <div class="app-logo">${app.company[0]}</div>
+                            <div>
+                                <h4 style="font-size: 17px;">${app.title}</h4>
+                                <p style="font-size: 13px; color: var(--text-secondary);">Applied on ${new Date(app.applied_at).toLocaleDateString()} • ${app.company}</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 24px;">
+                            <span class="status-badge ${statusClass}">${app.status}</span>
+                            <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View Details</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+                if (applications.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; padding: 40px; color: var(--text-secondary);">You haven\'t applied to any internships yet.</p>';
+                }
+            } catch (err) {
+                console.error('Error fetching applications:', err);
+            }
+        });
+
+        function getStatusClass(status) {
+            const s = status.toLowerCase();
+            if (s.includes('review')) return 'status-review';
+            if (s.includes('hire') || s.includes('accept')) return 'status-hired';
+            if (s.includes('close') || s.includes('reject')) return 'status-closed';
+            return 'status-applied';
+        }
+    </script>
+</body>
+
+</html>
